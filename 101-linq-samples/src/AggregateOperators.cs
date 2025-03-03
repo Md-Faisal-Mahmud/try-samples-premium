@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace Try101LinqSamples
 {
@@ -114,11 +115,19 @@ namespace Try101LinqSamples
 
             #region MyRegion
             var categoriesWithStock = from p in products
-                             group p by p.Category into g
-                             select (Category: g.Key, TotalUnitsInStock: g.Sum(p => p.UnitsInStock));
+                                        group p by p.Category into g
+                                        select (Category: g.Key, TotalUnitsInStock: g.Sum(p => p.UnitsInStock));
+
+            var categoriesWithStock1 = products
+                                        .GroupBy(prod => prod.Category)
+                                        .Select(g => (g.Key, g.Sum(prod => prod.UnitsInStock)));
+            //g implements IEnumerable<TElement>, meaning it is a collection of Product elements.
+            //IGrouping<TKey, TElement> Implements IEnumerable<TElement>
+            //Since IGrouping<TKey, TElement> is iterable, you can apply LINQ methods like .Sum(), .Where(), or.Select() to iterate over its TElement collection.
+            //Why Doesn't g.Key Affect Iteration?
+            //When you call.Sum(), LINQ treats g as IEnumerable<Product>, so it completely ignores g.Key and only iterates over the products inside g.
             #endregion
 
-            //var categoriesWithStock1 = products.
             foreach (var pair in categoriesWithStock)
             {
                 Console.WriteLine($"Category: {pair.Category}, Units in stock: {pair.TotalUnitsInStock}");
