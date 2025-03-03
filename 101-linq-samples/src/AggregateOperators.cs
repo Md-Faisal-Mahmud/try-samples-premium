@@ -175,6 +175,9 @@ namespace Try101LinqSamples
                              select (Category: g.Key, CheapestPrice: g.Min(p => p.UnitPrice));
             #endregion
 
+            var x = products.GroupBy(prod => prod.Category)
+                            .Select(g => (g.Key, g.Min(prod => prod.UnitPrice)));
+
             foreach (var c in categories)
             {
                 Console.WriteLine($"Category: {c.Category}, Lowest price: {c.CheapestPrice}");
