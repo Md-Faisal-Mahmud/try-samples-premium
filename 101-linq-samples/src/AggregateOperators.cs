@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Intrinsics.X86;
 
 namespace Try101LinqSamples
 {
@@ -71,7 +70,7 @@ namespace Try101LinqSamples
                                  select (Category: g.Key, ProductCount: g.Count());
             var categoryCounts1 = products.GroupBy(x => x.Category).Select(x => (x.Key, x.Count()));
             #endregion
-            
+
             foreach (var c in categoryCounts)
             {
                 Console.WriteLine($"Category: {c.Category}: Product count: {c.ProductCount}");
@@ -89,7 +88,7 @@ namespace Try101LinqSamples
             #region MyRegion
             var numSum = numbers.Sum();
             #endregion
-            var x = numbers.Sum();
+
             Console.WriteLine($"The sum of the numbers is {numSum}");
             #endregion
             return 0;
@@ -99,7 +98,6 @@ namespace Try101LinqSamples
         {
             #region sum-of-projection
             string[] words = { "cherry", "apple", "blueberry" };
-
             #region MyRegion
             double totalChars = words.Sum(w => w.Length);
             #endregion
@@ -115,12 +113,13 @@ namespace Try101LinqSamples
             List<Product> products = GetProductList();
 
             #region MyRegion
-            var categories = from p in products
+            var categoriesWithStock = from p in products
                              group p by p.Category into g
                              select (Category: g.Key, TotalUnitsInStock: g.Sum(p => p.UnitsInStock));
             #endregion
 
-            foreach (var pair in categories)
+            //var categoriesWithStock1 = products.
+            foreach (var pair in categoriesWithStock)
             {
                 Console.WriteLine($"Category: {pair.Category}, Units in stock: {pair.TotalUnitsInStock}");
             }
