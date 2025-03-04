@@ -173,10 +173,10 @@ namespace Try101LinqSamples
             var categories = from p in products
                              group p by p.Category into g
                              select (Category: g.Key, CheapestPrice: g.Min(p => p.UnitPrice));
-            #endregion
 
-            var x = products.GroupBy(prod => prod.Category)
+            var categoriesMine = products.GroupBy(prod => prod.Category)
                             .Select(g => (g.Key, g.Min(prod => prod.UnitPrice)));
+            #endregion
 
             foreach (var c in categories)
             {
@@ -196,6 +196,13 @@ namespace Try101LinqSamples
                              group p by p.Category into g
                              let minPrice = g.Min(p => p.UnitPrice)
                              select (Category: g.Key, CheapestProducts: g.Where(p => p.UnitPrice == minPrice));
+
+            var categoriesMine = products.GroupBy(prod => prod.Category)
+                            .Select(g =>
+                            {
+                                var minPrice = g.Min(prod => prod.UnitPrice);
+                                return (g.Key, g.Where(prod => prod.UnitPrice == minPrice));
+                            });
             #endregion
 
             foreach (var c in categories)
