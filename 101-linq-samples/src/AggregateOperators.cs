@@ -256,8 +256,9 @@ namespace Try101LinqSamples
                              select (Category: g.Key, MostExpensivePrice: g.Max(p => p.UnitPrice));
             #endregion
 
+            #region statement-boded lamda, expresssion-bodied lamda, anonymous type
             var x = products.GroupBy(x => x.Category)
-                            .Select(g => 
+                            .Select(g =>
                             {
                                 var maxPrice = g.Max(x => x.UnitPrice);
                                 return (g.Key, maxPrice);
@@ -271,6 +272,7 @@ namespace Try101LinqSamples
                                 Category = g.Key,
                                 MostExpensivePrice = g.Max(x => x.UnitPrice)
                             });
+            #endregion
 
             foreach (var c in categories)
             {
@@ -287,10 +289,18 @@ namespace Try101LinqSamples
 
             #region MyRegion
             var categories = from p in products
-                             group p by p.Category into g
-                             let maxPrice = g.Max(p => p.UnitPrice)
-                             select (Category: g.Key, MostExpensiveProducts: g.Where(p => p.UnitPrice == maxPrice));
+                                group p by p.Category into g
+                                let maxPrice = g.Max(p => p.UnitPrice)
+                                select (Category: g.Key, MostExpensiveProducts: g.Where(p => p.UnitPrice == maxPrice));
+
+            var categoriesMine = products.GroupBy(x => x.Category)
+                                        .Select(g =>
+                                        {
+                                            var maxPrice = g.Max(x => x.UnitPrice);
+                                            return (Category: g.Key, MaxPrice: maxPrice);
+                                        });
             #endregion
+
 
             foreach (var c in categories)
             {
