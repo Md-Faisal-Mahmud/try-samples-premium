@@ -256,6 +256,22 @@ namespace Try101LinqSamples
                              select (Category: g.Key, MostExpensivePrice: g.Max(p => p.UnitPrice));
             #endregion
 
+            var x = products.GroupBy(x => x.Category)
+                            .Select(g => 
+                            {
+                                var maxPrice = g.Max(x => x.UnitPrice);
+                                return (g.Key, maxPrice);
+                            });
+            var y = products.GroupBy(x => x.Category)
+                            .Select(g => (g.Key, g.Max(x => x.UnitPrice)));
+
+            var z = products.GroupBy(x => x.Category)
+                            .Select(g => new
+                            {
+                                Category = g.Key,
+                                MostExpensivePrice = g.Max(x => x.UnitPrice)
+                            });
+
             foreach (var c in categories)
             {
                 Console.WriteLine($"Category: {c.Category} Most expensive product: {c.MostExpensivePrice}");
