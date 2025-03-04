@@ -5,7 +5,7 @@ using System.Xml.Linq;
 
 namespace Try101LinqSamples
 {
-    public class AggregateOperators
+    public class AggregateOperators // .COM
     {
         public List<Product> GetProductList() => Products.ProductList;
         public List<Customer> GetCustomerList() => Customers.CustomerList;

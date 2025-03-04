@@ -13,7 +13,10 @@ namespace Try101LinqSamples
             var sortedDoubles = from d in doubles 
                                 orderby d descending
                                 select d;
+
+            #region MyRegion
             var doublesArray = sortedDoubles.ToArray();
+            #endregion
 
             Console.WriteLine("Every other double from highest to lowest:");
             for (int d = 0; d < doublesArray.Length; d += 2)
@@ -32,7 +35,9 @@ namespace Try101LinqSamples
             var sortedWords = from w in words 
                               orderby w
                               select w;
+            #region MyRegion
             var wordList = sortedWords.ToList();
+            #endregion
 
             Console.WriteLine("The sorted word list:");
             foreach (var w in wordList)
@@ -46,12 +51,16 @@ namespace Try101LinqSamples
         public int ConvertToDictionary()
         {
             #region convert-to-dictionary
-            var scoreRecords = new[] { new {Name = "Alice", Score = 50},
-                                new {Name = "Bob"  , Score = 40},
-                                new {Name = "Cathy", Score = 45}
-                            };
+            var scoreRecords = new[]
+            {
+                new {Name = "Alice", Score = 50},
+                new {Name = "Bob"  , Score = 40},
+                new {Name = "Cathy", Score = 45}
+            };
 
+            #region MyRegion
             var scoreRecordsDict = scoreRecords.ToDictionary(sr => sr.Name);
+            #endregion
 
             Console.WriteLine("Bob's score: {0}", scoreRecordsDict["Bob"]);
             #endregion
@@ -63,10 +72,12 @@ namespace Try101LinqSamples
             #region convert-to-type
             object[] numbers = { null, 1.0, "two", 3, "four", 5, "six", 7.0 };
 
+            #region MyRegion
             var doubles = numbers.OfType<double>();
+            #endregion
 
             Console.WriteLine("Numbers stored as doubles:");
-            foreach (var d in doubles)
+            foreach (var d in doubles )
             {
                 Console.WriteLine(d);
             }
