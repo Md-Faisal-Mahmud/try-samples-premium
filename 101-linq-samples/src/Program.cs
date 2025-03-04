@@ -272,6 +272,8 @@ namespace Try101LinqSamples
             new AggregateOperators().AverageProjection();
             new AggregateOperators().AverageGrouped();
             new AggregateOperators().AggregateSyntax();
+            new AggregateOperators().AggregateSyntax1();
+            new AggregateOperators().SeededAggregate();
 
             // Miscellaneous:
             new SequenceOperations().ConcatSeries();

@@ -369,9 +369,25 @@ namespace Try101LinqSamples
             #region MyRegion
             double product = doubles.Aggregate((runningProduct, nextFactor) => runningProduct * nextFactor);
             #endregion
-
+            var x = doubles.Aggregate((acc, num) => acc * num);
+            //that means value first come here(acc, num) then next => step?
+            //Yes, The first two values from the array are initially assigned to acc(accumulator) and num(next number in the sequence)
             Console.WriteLine($"Total product of all numbers: {product}");
             #endregion
+            return 0;
+        }
+
+        public int AggregateSyntax1()
+        {
+            int[] numbers = { 2, 3, 4, 5 };
+
+            int product = numbers.Aggregate((acc, num) =>
+            {
+                Console.WriteLine($"acc: {acc}, num: {num}, result: {acc * num}");
+                return acc * num;
+            });
+
+            Console.WriteLine($"Final result: {product}");
             return 0;
         }
 
@@ -388,7 +404,22 @@ namespace Try101LinqSamples
                     (balance, nextWithdrawal) =>
                         ((nextWithdrawal <= balance) ? (balance - nextWithdrawal) : balance));
             #endregion
-
+            var x = attemptedWithdrawals
+                .Aggregate(startBalance,
+                (balance, nextWithdrawal) =>
+                {
+                    Console.Write($"balance: {balance}, nextWithdrawal: {nextWithdrawal}, ");
+                    if (nextWithdrawal <= balance)
+                    {
+                        Console.WriteLine($"Result: {balance - nextWithdrawal}");
+                        return balance - nextWithdrawal;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Result: {balance}");
+                        return balance;
+                    }
+                });
             Console.WriteLine($"Ending balance: {endBalance}");
             #endregion
             return 0;
