@@ -8,9 +8,12 @@ namespace Try101LinqSamples
         public int RangeOfIntegers()
         {
             #region generate-range
+            #region MyRegion
             var numbers = from n in Enumerable.Range(100, 50)
                           select (Number: n, OddEven: n % 2 == 1 ? "odd" : "even");
+            #endregion
 
+            var x = Enumerable.Range(100, )
             foreach (var n in numbers)
             {
                 Console.WriteLine("The number {0} is {1}.", n.Number, n.OddEven);
