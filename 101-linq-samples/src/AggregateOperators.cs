@@ -168,7 +168,7 @@ namespace Try101LinqSamples
             return 0;
         }
 
-        public int MinGrouped()
+        public int MinGrouped() // V.I.P: only take the min price
         {
             #region min-grouped
             List<Product> products = GetProductList();
@@ -190,7 +190,7 @@ namespace Try101LinqSamples
             return 0;
         }
 
-        public int MinEachGroup()
+        public int MinEachGroup() // V.I.P: take the product which have min price?
         {
             #region min-each-group
             List<Product> products = GetProductList();
