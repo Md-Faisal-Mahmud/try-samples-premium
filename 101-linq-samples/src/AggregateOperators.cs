@@ -69,8 +69,12 @@ namespace Try101LinqSamples
             var categoryCounts = from p in products
                                  group p by p.Category into g
                                  select (Category: g.Key, ProductCount: g.Count());
-            var categoryCounts1 = products.GroupBy(x => x.Category).Select(x => (x.Key, x.Count()));
+            var categoryCounts1 = products.GroupBy(x => x.Category).Select(g => (g.Key, g.Count()));
             #endregion
+
+            /* by which we groupBy, that is the key. then you can select the key of the group and 
+            * project the value of the of the group
+            */
 
             foreach (var c in categoryCounts)
             {
