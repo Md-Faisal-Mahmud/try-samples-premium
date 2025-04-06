@@ -110,7 +110,7 @@ namespace Try101LinqSamples
             #region MyRegion
             double totalChars = words.Sum(w => w.Length);
             #endregion
-
+            
             Console.WriteLine($"There are a total of {totalChars} characters in these words.");
             #endregion
             return 0;
@@ -172,7 +172,7 @@ namespace Try101LinqSamples
             return 0;
         }
 
-        public int MinGrouped() // V.I.P: only take the min price
+        public int MinGrouped() // V.I.P: only take the category and min price , not Product object.
         {
             #region min-grouped
             List<Product> products = GetProductList();
@@ -194,7 +194,7 @@ namespace Try101LinqSamples
             return 0;
         }
 
-        public int MinEachGroup() // V.I.P: take the product which have min price?
+        public int MinEachGroup() // V.I.P: take the CATEGORY and PRODUCT which have min price, not only min price?
         {
             #region min-each-group
             List<Product> products = GetProductList();
