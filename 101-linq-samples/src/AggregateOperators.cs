@@ -264,7 +264,7 @@ namespace Try101LinqSamples
                              select (Category: g.Key, MostExpensivePrice: g.Max(p => p.UnitPrice));
             #endregion
 
-            #region statement-boded lamda, expresssion-bodied lamda, anonymous type
+            #region statement-bodied lamda, expresssion-bodied lamda, anonymous type
             var x = products.GroupBy(x => x.Category)
                             .Select(g =>
                             {
@@ -376,10 +376,12 @@ namespace Try101LinqSamples
 
             #region MyRegion
             double product = doubles.Aggregate((runningProduct, nextFactor) => runningProduct * nextFactor);
-            #endregion
-            var x = doubles.Aggregate((acc, num) => acc * num);
+
+            var product1 = doubles.Aggregate((acc, oneByOne) => acc * oneByOne);
             //that means value first come here(acc, num) then next => step?
             //Yes, The first two values from the array are initially assigned to acc(accumulator) and num(next number in the sequence)
+            #endregion
+
             Console.WriteLine($"Total product of all numbers: {product}");
             #endregion
             return 0;
