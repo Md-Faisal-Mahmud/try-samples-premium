@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace Try101LinqSamples
 {
@@ -47,6 +46,11 @@ namespace Try101LinqSamples
             List<Customer> customers = GetCustomerList();
 
             #region MyRegion
+            var orderCountsMethodSyntax = customers.Select(x => (x.CustomerID, x.Orders.Count()));
+
+            var orderCountsMethodSyntaxAnonymousObject1 = customers.Select(x => new { x.CustomerID, x.Orders.Length});
+            var orderCountsMethodSyntaxAnonymousObject2 = customers.Select(x => new { x.CustomerID, orderCount = x.Orders.Count()});
+
             var orderCounts = from c in customers
                               select (c.CustomerID, OrderCount: c.Orders.Count());
             #endregion
