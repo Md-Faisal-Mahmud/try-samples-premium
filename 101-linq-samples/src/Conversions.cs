@@ -17,7 +17,7 @@ namespace Try101LinqSamples
             #region MyRegion
             var doublesArray = sortedDoubles.ToArray();
             #endregion
-
+            
             Console.WriteLine("Every other double from highest to lowest:");
             for (int d = 0; d < doublesArray.Length; d += 2)
             {
@@ -35,8 +35,9 @@ namespace Try101LinqSamples
             var sortedWords = from w in words 
                               orderby w
                               select w;
+
             #region MyRegion
-            var wordList = sortedWords.ToList();
+            var wordList = words.OrderBy(w => w).ToList();
             #endregion
 
             Console.WriteLine("The sorted word list:");
